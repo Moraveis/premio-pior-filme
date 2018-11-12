@@ -2,7 +2,7 @@ package com.premiopiorfilme.premiopiorfilme.controller;
 
 import com.premiopiorfilme.premiopiorfilme.model.ApiError;
 import com.premiopiorfilme.premiopiorfilme.model.Movie;
-import com.premiopiorfilme.premiopiorfilme.model.StatisticProducer;
+import com.premiopiorfilme.premiopiorfilme.model.Producer;
 import com.premiopiorfilme.premiopiorfilme.model.Studio;
 import com.premiopiorfilme.premiopiorfilme.model.Year;
 import com.premiopiorfilme.premiopiorfilme.service.MovieService;
@@ -129,10 +129,10 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.OK).body(studios);
     }
 
-    @GetMapping("/intervals")
-    public List<StatisticProducer> getProducersStatistics() {
+    @GetMapping("/producers")
+    public ResponseEntity<Object> getProducersStatistics() {
 
-        return new ArrayList<>();
+        return ResponseEntity.status(HttpStatus.OK).body("");
     }
 
     @DeleteMapping("/movies/{id}")

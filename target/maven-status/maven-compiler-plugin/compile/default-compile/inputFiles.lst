@@ -1,6 +1,6 @@
 /Users/joao/Documents/GitHub/premio-pior-filme/src/main/java/com/premiopiorfilme/premiopiorfilme/model/Studio.java
 /Users/joao/Documents/GitHub/premio-pior-filme/src/main/java/com/premiopiorfilme/premiopiorfilme/model/ApiError.java
-/Users/joao/Documents/GitHub/premio-pior-filme/src/main/java/com/premiopiorfilme/premiopiorfilme/model/StatisticProducer.java
+/Users/joao/Documents/GitHub/premio-pior-filme/src/main/java/com/premiopiorfilme/premiopiorfilme/model/Producer.java
 /Users/joao/Documents/GitHub/premio-pior-filme/src/main/java/com/premiopiorfilme/premiopiorfilme/model/Year.java
 /Users/joao/Documents/GitHub/premio-pior-filme/src/main/java/com/premiopiorfilme/premiopiorfilme/service/MovieService.java
 /Users/joao/Documents/GitHub/premio-pior-filme/src/main/java/com/premiopiorfilme/premiopiorfilme/model/Movie.java
