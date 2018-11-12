@@ -1,1 +1,10 @@
+com/premiopiorfilme/premiopiorfilme/model/Year$Item.class
+com/premiopiorfilme/premiopiorfilme/model/Year.class
+com/premiopiorfilme/premiopiorfilme/model/Movie.class
+com/premiopiorfilme/premiopiorfilme/model/StatisticProducer.class
+com/premiopiorfilme/premiopiorfilme/model/Studio$Item.class
+com/premiopiorfilme/premiopiorfilme/model/Studio.class
+com/premiopiorfilme/premiopiorfilme/model/ApiError.class
 com/premiopiorfilme/premiopiorfilme/PremioPiorFilmeApplication.class
+com/premiopiorfilme/premiopiorfilme/service/MovieService.class
+com/premiopiorfilme/premiopiorfilme/controller/MovieController.class

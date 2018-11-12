@@ -66,7 +66,7 @@ public class MovieControllerTest {
         Mockito.when(movieService.getMovies()).thenReturn(list);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/winners/years/1980")
+                .get("/winners/1980")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();

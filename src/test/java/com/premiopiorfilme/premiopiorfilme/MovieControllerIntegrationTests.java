@@ -75,7 +75,7 @@ public class MovieControllerIntegrationTests {
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
         ResponseEntity<String> response = restTemplate.exchange(
-                createURLWithPort("/winners/years/1982"),
+                createURLWithPort("/winners/1982"),
                 HttpMethod.GET, entity, String.class);
 
         String expected = "[{\"id\":1,\"year\":1982,\"title\":\"Inchon\",\"winner\":true}]";
