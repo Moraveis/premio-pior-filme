@@ -34,43 +34,6 @@ Para o denvolvimento do projeto foi desenvolvido uma API RESTful responsável pe
 
 ## Erros
 
-# Prémio Pior Filme
-Prémio Pior Filme (uma categoria do Golden Raspberry Awards) é um projeto desenvolvido para participar do processo seletivo da empresa TexoIT para a vaga de desenvolver Java Web direcionada ao Back End.
-
-O projeto consiste em realizar a leitura de um arquivo .csv contendo os dados do filmes e staff indicados ao prémio permitindo consultar-los e manipular-los. 
-
-Para o denvolvimento do projeto foi desenvolvido uma API RESTful responsável pela manulipulação dos dados através dos métodos GET, POST, PUT e DELETE as operações necessária. 
-
-- [Ferramentas Usadas](#ferramentas-usadas)
-- [Como executar](#como-executar)
-- [Testes Unitarios](#teste-unitario)
-- [Erros](#erros)
-- [Recursos](#recursos)
-- [Back End (API v1)](#back-end)
-
-## Ferramentas Usadas
-
-- IDE de Desenvolvimento: [NetBeans 8.2 com Java EE 6](https://netbeans.org)
-- Gerenciador de Dependências: [Maven 3.1](https://maven.apache.org/)
-- Framework para desenvolvimento da API: [Spring Boot 2.1](https://spring.io/projects/spring-boot)
-- Servidor de Aplicação: [Apache Tomcat 8.0](http://tomcat.apache.org/)
-- Testes da API RESTful: [Postman](https://www.getpostman.com/) 
-
-## Como Executar
-
-- Instalar a IDE [NetBeans 8.2 com Java EE 8](https://netbeans.org)
-- Instalar o servidor de aplicação [Apache Tomcat 8.0](http://tomcat.apache.org/)
-
-- Abrir o projeto e selecionar a opção "Limpar e contruir" para que a IDE possa baixar as dependências. 
-
-    URL Base: http://localhost:8080/
-
-* A porta pode ou não mudar dependendo da escolha durante a instalação do servidor de aplicação.
-
-- O deploy do projeto pode ocorrer de duas maneira: a convencional que é gerar o ".war" e realizar o deploy em um servidor de aplicação externo ou gerar um arquivo ".jar" e utilizar o suporte do Spring encapsular Tomcat.  
-
-## Erros
-
 <p>Utilizei os status code do protocolo HTTP, disponíveis no header de cada response.</p>
 <p><code>200 OK</code> Tudo funcionou como esperado.</p>
 <p><code>201 OK</code> O Recurso foi criado com sucesso.</p>
@@ -214,11 +177,11 @@ Para o denvolvimento do projeto foi desenvolvido uma API RESTful responsável pe
 </pre>
 <h3>
 
-## Teste Unitário
+## Teste Unitario
 
 A realização dos testes unitários durante o devenvolvimento de uma API nos ajuda a entender e validar os rescursos e dados.
 
-[As seguintes validações devem ser consideradas:]
+<strong>As seguintes validações devem ser consideradas:</strong>
 
 - Validar os dados que retorna.
 - Validar os headers da resposta
