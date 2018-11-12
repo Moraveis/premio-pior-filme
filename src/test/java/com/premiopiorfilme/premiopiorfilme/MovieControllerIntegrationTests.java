@@ -62,12 +62,33 @@ public class MovieControllerIntegrationTests {
                 Arrays.asList("Warner Bros.", "Franchise Pictures"),
                 Arrays.asList("Renny Harlin", "Elie Samaha and Sylvester Stallone"), Boolean.TRUE);
 
+        Movie mockMovieWinner6 = new Movie(6, 1982, "Inchon",
+                Arrays.asList("MGM"),
+                Arrays.asList("Renny Harlin"), Boolean.TRUE);
+
+        Movie mockMovieWinner7 = new Movie(7, 1995, "Showgirls",
+                Arrays.asList("MGM", "United Artists"),
+                Arrays.asList("Charles Evans and Alan Marshall", "Joe Ruffalo and Steve Fargnoli"), Boolean.TRUE);
+
+        Movie mockMovieWinner8 = new Movie(8, 1996, "Driven",
+                Arrays.asList("Warner Bros.", "Franchise Pictures"),
+                Arrays.asList("Charles Evans and Alan Marshall", "Elie Samaha and Sylvester Stallone"), Boolean.TRUE);
+
+        Movie mockMovieWinner9 = new Movie(9, 2001, "Thundercats",
+                Arrays.asList("Warner Bros.", "Franchise Pictures"),
+                Arrays.asList("Renny Harlin", "Elie Samaha and Sylvester Stallone"), Boolean.FALSE);
+
+        Movie mockMovieWinner10 = new Movie(10, 2017, "Driven",
+                Arrays.asList("Warner Bros.", "Franchise Pictures"),
+                Arrays.asList("Renny Harlin"), Boolean.TRUE);
+
         movieService.getMovies().clear();
         movieService.getMovies().add(mockMovieWinner1);
         movieService.getMovies().add(mockMovieWinner2);
         movieService.getMovies().add(mockMovieWinner3);
         movieService.getMovies().add(mockMovieWinner4);
         movieService.getMovies().add(mockMovieWinner5);
+
     }
 
     @Test
@@ -117,6 +138,53 @@ public class MovieControllerIntegrationTests {
 
     @Test
     public void testGetProducersStatistics() throws JSONException {
+        Movie mockMovieWinner1 = new Movie(6, 1982, "Inchon",
+                Arrays.asList("MGM"),
+                Arrays.asList("Renny Harlin"), Boolean.TRUE);
+
+        Movie mockMovieWinner2 = new Movie(7, 1995, "Showgirls",
+                Arrays.asList("MGM", "United Artists"),
+                Arrays.asList("Charles Evans and Alan Marshall", "Joe Ruffalo and Steve Fargnoli"), Boolean.TRUE);
+
+        Movie mockMovieWinner3 = new Movie(8, 1996, "Driven",
+                Arrays.asList("Warner Bros.", "Franchise Pictures"),
+                Arrays.asList("Charles Evans and Alan Marshall", "Elie Samaha and Sylvester Stallone"), Boolean.TRUE);
+
+        Movie mockMovieWinner4 = new Movie(9, 2001, "Thundercats",
+                Arrays.asList("Warner Bros.", "Franchise Pictures"),
+                Arrays.asList("Renny Harlin", "Elie Samaha and Sylvester Stallone"), Boolean.FALSE);
+
+        Movie mockMovieWinner5 = new Movie(10, 2017, "Driven",
+                Arrays.asList("Warner Bros.", "Franchise Pictures"),
+                Arrays.asList("Renny Harlin"), Boolean.TRUE);
+
+        movieService.getMovies().clear();
+        movieService.getMovies().add(mockMovieWinner1);
+        movieService.getMovies().add(mockMovieWinner2);
+        movieService.getMovies().add(mockMovieWinner3);
+        movieService.getMovies().add(mockMovieWinner4);
+        movieService.getMovies().add(mockMovieWinner5);
+
+        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                createURLWithPort("/producers"),
+                HttpMethod.GET, entity, String.class);
+
+        String expected = "{"
+                            + "\"min\":"
+                                + "{\"producer\":\"Charles Evans and Alan Marshall\","
+                                + "\"interval\":1,"
+                                + "\"previousWin\":1995,"
+                                + "\"followingWin\":1996},"
+                            + "\"max\":"
+                                + "{\"producer\":\"Renny Harlin\","
+                                + "\"interval\":35,"
+                                + "\"previousWin\":1982,"
+                                + "\"followingWin\":2017}"
+                        + "}";
+
+        JSONAssert.assertEquals(expected, response.getBody(), false);
 
     }
 

@@ -212,7 +212,7 @@ public class MovieController {
 
         producer.setMin(minByInterval);
         producer.setMax(maxByInterval);
-        return ResponseEntity.status(HttpStatus.OK).body(list);
+        return ResponseEntity.status(HttpStatus.OK).body(producer);
     }
 
     @DeleteMapping("/movies/{id}")
