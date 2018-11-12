@@ -8,11 +8,13 @@ import com.premiopiorfilme.premiopiorfilme.model.Year;
 import com.premiopiorfilme.premiopiorfilme.service.MovieService;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -131,8 +133,86 @@ public class MovieController {
 
     @GetMapping("/producers")
     public ResponseEntity<Object> getProducersStatistics() {
+        HashMap<String, List<Integer>> mapProducerYears = new HashMap<>();
+        Producer producer = new Producer();
 
-        return ResponseEntity.status(HttpStatus.OK).body("");
+        movieService.getMovies().stream()
+                .filter(m -> m.isWinner())
+                .forEach(a -> {
+                    for (String b : a.getProducers()) {
+                        List<Integer> aux = mapProducerYears.get(b);
+                        if (aux == null) {
+                            aux = new LinkedList<>();
+                            aux.add(a.getYear());
+                            mapProducerYears.put(b, aux);
+                        } else {
+                            aux.add(a.getYear());
+                            mapProducerYears.put(b, aux);
+                        }
+                    }
+                });
+
+        List<Producer.Item> list = new ArrayList<>();
+        mapProducerYears.entrySet().stream()
+                .filter(m -> m.getValue().size() > 1)
+                .forEach(i -> {
+                    
+                    Producer.Item minItem = null;
+                    List<Integer> aux = i.getValue();
+                    Integer min = null, previous = null, next = null, diff = null;
+
+                    for (int a = 0; a < (aux.size() - 1); a++) {
+                        previous = aux.get(a);
+                        next = aux.get(a + 1);
+                        diff = next - previous;
+                        if (min == null) {
+                            min = diff;
+                        } else if (min > diff) {
+                            min = diff;
+                        }
+                    }
+                    
+                    minItem = new Producer.Item(i.getKey(), diff, previous, next);
+                    list.add(minItem);
+                });
+
+        Producer.Item minByInterval = list
+                .stream()
+                .min(Comparator.comparing(Producer.Item::getInterval))
+                .orElseThrow(NoSuchElementException::new);
+        
+        list.clear();
+        mapProducerYears.entrySet().stream()
+                .filter(m -> m.getValue().size() > 1)
+                .forEach(i -> {
+                    
+                    Producer.Item minItem = null;
+                    List<Integer> aux = i.getValue();
+                    Integer max = null, previous = null, next = null, diff = null;
+
+                    for (int a = 0; a < (aux.size() - 1); a++) {
+                        previous = aux.get(a);
+                        next = aux.get(a + 1);
+                        diff = next - previous;
+                        if (max == null) {
+                            max = diff;
+                        } else if (max < diff) {
+                            max = diff;
+                        }
+                    }
+                    
+                    minItem = new Producer.Item(i.getKey(), diff, previous, next);
+                    list.add(minItem);
+                });
+
+        Producer.Item maxByInterval = list
+                .stream()
+                .max(Comparator.comparing(Producer.Item::getInterval))
+                .orElseThrow(NoSuchElementException::new);
+
+        producer.setMin(minByInterval);
+        producer.setMax(maxByInterval);
+        return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 
     @DeleteMapping("/movies/{id}")
